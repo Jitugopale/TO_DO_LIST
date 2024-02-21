@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        body{
+            background-color: rgb(122, 197, 238);
+        }
+
+        #todoList {
+            background-color: white;
+            border: 2px solid black;
+            padding: 40px;
+            width: 400px;
+            margin-top: 180px;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 20px;
+        
+        }
+
+        input[type="text"] {
+            width: 70%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .wrong-mark {
+            color: red;
+            margin-left: 8px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div id="todoList">
+    <h2>To-Do List</h2>
+    <input type="text" id="taskInput" placeholder="New task...">
+    <button onclick="addTask()">Add</button>
+    <ul id="tasks"></ul>
+</div>
+
+<script>
+    function addTask() {
+        var taskInput = document.getElementById("taskInput");
+        var taskText = taskInput.value.trim();
+
+        if (taskText !== "") {
+            var tasksList = document.getElementById("tasks");
+            var newTask = document.createElement("li");
+            newTask.textContent = taskText;
+
+            // Add wrong mark
+            var wrongMark = document.createElement("span");
+            wrongMark.className = "wrong-mark";
+            wrongMark.textContent = "❌";
+            wrongMark.onclick = function() {
+                tasksList.removeChild(newTask);
+            };
+
+            newTask.appendChild(wrongMark);
+            tasksList.appendChild(newTask);
+
+            // Clear the input field
+            taskInput.value = "";
+        }
+    }
+</script>
+
+</body>
+</html>
